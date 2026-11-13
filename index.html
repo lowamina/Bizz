@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ceylon Biz World (Pvt) Ltd | Accounting, Tax &amp; Company Secretarial – Concept Demo</title>
+  <meta name="description" content="Ceylon Biz World (Pvt) Ltd, Wattala. Accounting and bookkeeping, tax consultation and compliance, auditing and assurance, company registration and secretarial services.">
+  <!-- Demo only: stops Google from listing this page. REMOVE when the real site goes live. -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #1d3fbf;
+      --blue-dark: #12276f;
+      --gold: #e0a526;
+      --gold-soft: #fbefd2;
+      --paper: #fbfaf7;
+      --ink: #111a33;
+      --muted: #5f6880;
+      --line: #e5e8f0;
+    }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    @supports (overflow: clip) { html, body { overflow-x: clip; } }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--ink); background: var(--paper); overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 700; color: var(--ink); letter-spacing: -.5px; }
+    h5 { font-weight: 700; }
+    em { font-style: italic; color: var(--blue); }
+    section { padding: 96px 0; }
+    .muted { color: var(--muted); }
+    .kick { font-size: .78rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); }
+    .title { font-size: clamp(2rem, 4.4vw, 3.1rem); line-height: 1.12; }
+    @media (max-width: 575px) { .row.g-5 { --bs-gutter-x: 1.5rem; --gx: 1.5rem; margin-left: -.75rem; margin-right: -.75rem; } .row.g-5 > * { padding-left: .75rem; padding-right: .75rem; } }
+
+    .demo-line { background: var(--blue-dark); color: #cdd6ff; text-align: center; font-size: .8rem; padding: 6px; }
+
+    /* Logo */
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+    .logo svg { width: 46px; height: 46px; }
+    .logo b { display: block; font-size: 1.1rem; line-height: 1.1; }
+    .logo b span { color: var(--gold); }
+    .logo small { display: block; font-size: .68rem; color: var(--muted); letter-spacing: 1px; }
+
+    .navbar { background: rgba(251,250,247,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+    .navbar .nav-link { color: var(--ink) !important; font-weight: 500; font-size: .92rem; }
+    .navbar .nav-link:hover { color: var(--blue) !important; }
+
+    .btn-blue { background: var(--blue); color: #fff; border: 0; border-radius: 10px; padding: 13px 26px; font-weight: 600; }
+    .btn-blue:hover { background: var(--blue-dark); color: #fff; }
+    .btn-gold { background: var(--gold); color: var(--ink); border: 0; border-radius: 10px; padding: 13px 26px; font-weight: 700; }
+    .btn-gold:hover { background: #cf951a; color: var(--ink); }
+    .btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 10px; padding: 12px 24px; font-weight: 600; }
+    .btn-outline:hover { background: var(--ink); color: #fff; }
+
+    /* Hero with ledger lines */
+    .hero { padding: 80px 0 90px; position: relative; overflow: hidden;
+      background-image: linear-gradient(var(--line) 1px, transparent 1px); background-size: 100% 44px; }
+    .hero::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 100%; background: linear-gradient(90deg, var(--paper) 30%, rgba(251,250,247,.6)); }
+    .hero .container { position: relative; }
+    .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.4rem); line-height: 1.05; }
+    .hero h1 em::after { content: ''; display: block; height: 6px; margin-top: -10px; background: var(--gold); opacity: .45; border-radius: 3px; }
+    .ledger { background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 70px rgba(17,26,51,.1); padding: 26px; font-variant-numeric: tabular-nums; }
+    .ledger .head { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 6px; }
+    .ledger .row-l { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: .95rem; }
+    .ledger .row-l span:last-child { font-weight: 700; display: inline-flex; gap: 6px; align-items: center; }
+    .ok { color: #16a34a; }
+    .stamp { display: inline-block; margin-top: 16px; border: 2.5px solid var(--blue); color: var(--blue); border-radius: 8px; padding: 4px 12px; font-weight: 800; letter-spacing: 2px; transform: rotate(-6deg); font-size: .85rem; }
+    .values { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; font-size: .9rem; font-weight: 600; }
+    .values i { color: var(--gold); margin-right: 6px; }
+
+    /* Services */
+    .services { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .svc { border: 1px solid var(--line); border-radius: 18px; padding: 28px; height: 100%; background: var(--paper); transition: .25s; position: relative; overflow: hidden; }
+    .svc:hover { border-color: var(--blue); transform: translateY(-4px); box-shadow: 0 16px 36px rgba(29,63,191,.1); }
+    .svc .ic { width: 54px; height: 54px; border-radius: 14px; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 16px; }
+    .svc h4 { font-size: 1.35rem; }
+    .svc ul { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); font-size: .9rem; }
+    .svc li { padding: 4px 0; }
+    .svc li i { color: var(--gold); margin-right: 6px; }
+
+    /* Helper (which service) */
+    .helper { background: var(--blue-dark); color: #fff; border-radius: 28px; padding: 46px; position: relative; overflow: hidden; }
+    .helper::after { content: ''; position: absolute; right: -80px; bottom: -80px; width: 260px; height: 260px; border-radius: 50%; border: 30px solid rgba(224,165,38,.15); }
+    .helper h2, .helper h4 { color: #fff; }
+    .step-no { font-size: .75rem; font-weight: 700; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; }
+    .opts { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 26px; position: relative; z-index: 1; }
+    .opt { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); color: #fff; border-radius: 12px; padding: 11px 16px; font-weight: 600; font-size: .92rem; cursor: pointer; }
+    .opt.on { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+    .result { background: #fff; color: var(--ink); border-radius: 18px; padding: 24px; position: relative; z-index: 1; height: 100%; }
+    .result h4 { color: var(--ink); font-size: 1.3rem; }
+    .result ul { list-style: none; padding: 0; margin: 10px 0 18px; }
+    .result li { padding: 8px 0; border-bottom: 1px solid var(--line); display: flex; gap: 10px; }
+    .result li i { color: var(--blue); }
+    @media (max-width: 575px) { .helper { padding: 24px; } }
+
+    /* Registration steps */
+    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .stp { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 24px; position: relative; }
+    .stp::before { counter-increment: s; content: '0' counter(s); font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; display: block; margin-bottom: 10px; }
+    .stp h5 { margin-bottom: 4px; }
+    .stp p { color: var(--muted); margin: 0; font-size: .9rem; }
+    @media (max-width: 991px) { .steps { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 575px) { .steps { grid-template-columns: 1fr; } }
+    .roc { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 30px; }
+    .roc span { background: var(--gold-soft); border-radius: 30px; padding: 7px 16px; font-size: .88rem; font-weight: 600; }
+
+    /* Consultation */
+    .consult { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 36px; box-shadow: 0 20px 50px rgba(17,26,51,.06); }
+    .consult label { font-weight: 600; font-size: .88rem; margin-bottom: 6px; display: block; }
+    .consult .form-control, .consult .form-select { border: 1.5px solid var(--line); border-radius: 10px; padding: 11px 12px; }
+    .consult .form-control:focus, .consult .form-select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(29,63,191,.12); }
+    @media (max-width: 575px) { .consult { padding: 22px; } }
+
+    /* Contact */
+    .c-line { display: flex; gap: 14px; margin-bottom: 14px; }
+    .c-line i { color: var(--blue); font-size: 1.2rem; }
+    .c-line a { color: var(--ink); text-decoration: none; }
+    .map iframe { width: 100%; height: 100%; min-height: 320px; border: 1px solid var(--line); border-radius: 20px; }
+
+    footer { background: var(--ink); color: #aab3cc; padding: 28px 0; font-size: .88rem; }
+    footer .logo { color: #fff; } footer .logo small { color: #aab3cc; }
+
+    .wa { position: fixed; right: 18px; bottom: 18px; width: 58px; height: 58px; border-radius: 50%; background: #25d366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; z-index: 999; box-shadow: 0 6px 20px rgba(0,0,0,.22); }
+    .wa:hover { color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: .7s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO NOTICE: remove after the owner approves -->
+  <div class="demo-line">Concept demo for Ceylon Biz World (Pvt) Ltd · photos are samples</div>
+
+  <!-- Logo mark (redrawn as vector, swap with the original file later) -->
+  <svg width="0" height="0" style="position:absolute"><defs>
+    <symbol id="cb-mark" viewBox="0 0 100 100">
+      <path d="M80 34 A34 34 0 1 0 82 66" fill="none" stroke="#e0a526" stroke-width="12" stroke-linecap="round"/>
+      <path d="M52 16 A34 34 0 0 1 82 34" fill="none" stroke="#1d3fbf" stroke-width="12" stroke-linecap="round"/>
+      <rect x="34" y="10" width="10" height="56" rx="4" fill="#1d3fbf"/>
+      <circle cx="54" cy="54" r="15" fill="none" stroke="#1d3fbf" stroke-width="8"/>
+      <circle cx="54" cy="54" r="8" fill="#1d3fbf"/>
+      <path d="M46 54h16M54 46v16M48.5 49.5c3.5 2 7.5 2 11 0M48.5 58.5c3.5-2 7.5-2 11 0" stroke="#fff" stroke-width="1.4" fill="none"/>
+    </symbol>
+  </defs></svg>
+
+  <!-- ===== NAV ===== -->
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="logo" href="#home"><svg><use href="#cb-mark"/></svg><span><b>Ceylon <span>Biz</span> World</b><small>(PVT) LTD</small></span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#helper">Find a service</a></li>
+          <li class="nav-item"><a class="nav-link" href="#register">Company registration</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-blue btn-sm" href="#consult">Free consultation</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="home">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-7 reveal">
+          <div class="kick">Accounting · Tax · Audit · Company Secretarial</div>
+          <h1 class="mt-3">Your trusted partner in financial &amp; business <em>excellence.</em></h1>
+          <p class="lead muted my-4" style="max-width:540px">From registering your company to keeping the books, filing taxes and annual returns, we handle the paperwork so you can focus on growing your business.</p>
+          <div class="d-flex flex-wrap gap-3">
+            <a href="#consult" class="btn btn-blue">Book a free consultation</a>
+            <a href="#helper" class="btn btn-outline">Which service do I need?</a>
+          </div>
+          <div class="values">
+            <span><i class="bi bi-award"></i>Professional service</span>
+            <span><i class="bi bi-shield-check"></i>Reliable &amp; trustworthy</span>
+            <span><i class="bi bi-sliders"></i>Tailored solutions</span>
+            <span><i class="bi bi-clock"></i>On-time support</span>
+          </div>
+        </div>
+        <div class="col-lg-5 reveal">
+          <div class="ledger">
+            <div class="head"><b>Your business checklist</b><small class="muted">This year</small></div>
+            <div class="row-l"><span>Company registered</span><span class="ok"><i class="bi bi-check-circle-fill"></i>Done</span></div>
+            <div class="row-l"><span>Books up to date</span><span class="ok"><i class="bi bi-check-circle-fill"></i>Done</span></div>
+            <div class="row-l"><span>Tax filed on time</span><span class="ok"><i class="bi bi-check-circle-fill"></i>Done</span></div>
+            <div class="row-l"><span>Annual return filed</span><span class="ok"><i class="bi bi-check-circle-fill"></i>Done</span></div>
+            <div class="row-l" style="border:0"><span>Your stress level</span><span style="color:var(--blue)">Zero</span></div>
+            <div class="text-end"><span class="stamp">HANDLED BY CBW</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="text-center mb-5 reveal"><div class="kick">What we do</div><h2 class="title mt-2">Four services, <em>one partner</em></h2></div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3 reveal"><div class="svc"><div class="ic"><i class="bi bi-journal-text"></i></div><h4>Accounting &amp; Bookkeeping</h4><ul><li><i class="bi bi-dot"></i>Monthly bookkeeping</li><li><i class="bi bi-dot"></i>Financial statements</li><li><i class="bi bi-dot"></i>Payroll support</li></ul></div></div>
+        <div class="col-md-6 col-lg-3 reveal"><div class="svc"><div class="ic"><i class="bi bi-receipt"></i></div><h4>Tax Consultation &amp; Compliance</h4><ul><li><i class="bi bi-dot"></i>Income tax returns</li><li><i class="bi bi-dot"></i>Tax registrations</li><li><i class="bi bi-dot"></i>Tax planning advice</li></ul></div></div>
+        <div class="col-md-6 col-lg-3 reveal"><div class="svc"><div class="ic"><i class="bi bi-search"></i></div><h4>Auditing &amp; Assurance</h4><ul><li><i class="bi bi-dot"></i>Audit support</li><li><i class="bi bi-dot"></i>Internal controls review</li><li><i class="bi bi-dot"></i>Accurate, reliable reports</li></ul></div></div>
+        <div class="col-md-6 col-lg-3 reveal"><div class="svc"><div class="ic"><i class="bi bi-building"></i></div><h4>Company Secretarial</h4><ul><li><i class="bi bi-dot"></i>Company registration</li><li><i class="bi bi-dot"></i>Annual return filing</li><li><i class="bi bi-dot"></i>Director &amp; share changes</li></ul></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHICH SERVICE HELPER ===== -->
+  <section id="helper">
+    <div class="container">
+      <div class="helper reveal">
+        <div class="row g-5 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="kick">Not sure where to start?</div>
+            <h2 class="title mt-2 mb-4">Which service do I <span style="color:var(--gold);font-style:italic">need?</span></h2>
+            <div class="step-no">Step 1 · Your business</div>
+            <div class="opts" id="qStage">
+              <div class="opt on" data-v="new">Starting a new business</div>
+              <div class="opt" data-v="company">Running a registered company</div>
+              <div class="opt" data-v="sole">Sole proprietor / self-employed</div>
+            </div>
+            <div class="step-no">Step 2 · What do you need help with? (pick any)</div>
+            <div class="opts" id="qNeed">
+              <div class="opt" data-v="books">Keeping accounts</div>
+              <div class="opt" data-v="tax">Tax</div>
+              <div class="opt" data-v="audit">Audit</div>
+              <div class="opt" data-v="changes">Changing directors / shares</div>
+              <div class="opt" data-v="annual">Annual return</div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="result">
+              <div class="kick" style="color:var(--blue)">Our suggestion</div>
+              <h4 class="mt-1" id="rTitle">Services for you</h4>
+              <ul id="rList"></ul>
+              <a id="rSend" href="#" target="_blank" class="btn btn-blue w-100"><i class="bi bi-whatsapp me-2"></i>Ask about these on WhatsApp</a>
+              <small class="muted d-block mt-2">A suggestion to get you started. We'll advise you properly after a quick chat.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COMPANY REGISTRATION ===== -->
+  <section id="register" class="pt-0">
+    <div class="container">
+      <div class="text-center mb-5 reveal"><div class="kick">Company registration</div><h2 class="title mt-2">Start your company in <em>4 simple steps</em></h2><p class="muted mx-auto" style="max-width:560px">We guide you through the Registrar of Companies process from start to finish.</p></div>
+      <div class="steps reveal">
+        <div class="stp"><h5>Choose a name</h5><p>We check that your company name is available and reserve it.</p></div>
+        <div class="stp"><h5>Prepare documents</h5><p>We prepare the forms and details of directors and shareholders.</p></div>
+        <div class="stp"><h5>Submit &amp; register</h5><p>We submit everything to the Registrar of Companies for you.</p></div>
+        <div class="stp"><h5>Get your certificate</h5><p>You receive your certificate of incorporation and you're ready to go.</p></div>
+      </div>
+      <div class="roc reveal">
+        <span>Company registration</span><span>Annual return filing</span><span>Change of directors / shareholders</span><span>Amendments to memorandum &amp; articles</span><span>Other ROC services</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONSULTATION ===== -->
+  <section id="consult" class="pt-0">
+    <div class="container" style="max-width:920px">
+      <div class="consult reveal">
+        <div class="text-center mb-4"><div class="kick">Talk to an expert</div><h2 class="title mt-2" style="font-size:clamp(1.8rem,3.6vw,2.5rem)">Book a <em>free consultation</em></h2></div>
+        <div class="row g-3">
+          <div class="col-md-6"><label>Your name</label><input id="cName" class="form-control" placeholder="Name"></div>
+          <div class="col-md-6"><label>Business name (if any)</label><input id="cBiz" class="form-control" placeholder="e.g. ABC Traders"></div>
+          <div class="col-md-6"><label>Service</label><select id="cSvc" class="form-select"><option>Accounting &amp; Bookkeeping</option><option>Tax Consultation &amp; Compliance</option><option>Auditing &amp; Assurance</option><option>Company Registration</option><option>Company Secretarial / ROC</option><option>Not sure yet</option></select></div>
+          <div class="col-md-6"><label>Preferred date</label><input id="cDate" type="date" class="form-control"></div>
+          <div class="col-12"><label>How would you like to meet?</label><select id="cMode" class="form-select"><option>Phone call</option><option>WhatsApp video call</option><option>Visit the office</option></select></div>
+          <div class="col-12"><button class="btn btn-gold w-100" onclick="consult()"><i class="bi bi-whatsapp me-2"></i>Request consultation</button></div>
+          <div class="col-12"><small id="cMsg" style="color:var(--blue);font-weight:700"></small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="pt-0">
+    <div class="container">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5 reveal">
+          <div class="kick">Contact</div>
+          <h2 class="title mt-2 mb-4">Let's talk <em>business</em></h2>
+          <div class="c-line"><i class="bi bi-geo-alt-fill"></i><div>Wattala, Gampaha 11000 <span class="muted small">(full address to be added)</span></div></div>
+          <div class="c-line"><i class="bi bi-whatsapp"></i><a href="https://wa.me/94768323029" target="_blank">+94 76 832 3029</a></div>
+          <div class="c-line"><i class="bi bi-telephone-fill"></i><a href="tel:+94768323029">+94 76 832 3029</a></div>
+          <div class="c-line"><i class="bi bi-instagram"></i><a href="https://www.instagram.com/ceylon_biz_world/" target="_blank" rel="noopener">@ceylon_biz_world</a></div>
+          <div class="c-line"><i class="bi bi-clock-fill"></i><div>Office hours <span class="muted small">(to be confirmed)</span></div></div>
+        </div>
+        <div class="col-lg-7 map reveal"><iframe src="https://maps.google.com/maps?q=Wattala%2C%20Sri%20Lanka&z=14&output=embed" loading="lazy" title="Map to Ceylon Biz World"></iframe></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <a class="logo" href="#home"><svg><use href="#cb-mark"/></svg><span><b>Ceylon <span>Biz</span> World</b><small>(PVT) LTD</small></span></a>
+      <span>&copy; <span id="yr"></span> Ceylon Biz World (Pvt) Ltd · Wattala</span>
+      <span>Website by Lowamina Pigera</span>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/94768323029" target="_blank" class="wa" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const WHATSAPP = '94768323029';
+    const wa = t => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(t)}`;
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    // ---- "Which service do I need?" helper ----
+    const BASE = {
+      new:     ['Company Registration', 'Bookkeeping set-up', 'Tax registration'],
+      company: ['Annual Return Filing', 'Accounting & Bookkeeping', 'Tax Compliance'],
+      sole:    ['Accounting & Bookkeeping', 'Income Tax Returns']
+    };
+    const NEED = {
+      books: 'Accounting & Bookkeeping', tax: 'Tax Consultation & Compliance', audit: 'Auditing & Assurance',
+      changes: 'Change of Directors / Shareholders', annual: 'Annual Return Filing'
+    };
+    const STAGE_NAME = { new: 'Starting a new business', company: 'Running a registered company', sole: 'Sole proprietor / self-employed' };
+    document.querySelectorAll('#qStage .opt').forEach(o => o.addEventListener('click', () => {
+      document.querySelectorAll('#qStage .opt').forEach(x => x.classList.remove('on')); o.classList.add('on'); suggest();
+    }));
+    document.querySelectorAll('#qNeed .opt').forEach(o => o.addEventListener('click', () => { o.classList.toggle('on'); suggest(); }));
+    function suggest() {
+      const stage = document.querySelector('#qStage .opt.on').dataset.v;
+      const list = [...BASE[stage]];
+      document.querySelectorAll('#qNeed .opt.on').forEach(o => {
+        const s = NEED[o.dataset.v];
+        const covered = list.some(x => x === s || (s.startsWith('Tax') && x.startsWith('Tax')) || (s.startsWith('Accounting') && x.startsWith('Book')));
+        if (!covered) list.push(s);
+      });
+      document.getElementById('rList').innerHTML = list.map(s => `<li><i class="bi bi-check2-circle"></i>${s}</li>`).join('');
+      document.getElementById('rSend').href = wa(`Hi Ceylon Biz World! I'm ${STAGE_NAME[stage].toLowerCase()}.\nI'd like to know more about:\n${list.map(s => '• ' + s).join('\n')}`);
+    }
+    suggest();
+
+    // ---- Consultation request ----
+    document.getElementById('cDate').min = new Date().toISOString().slice(0, 10);
+    function consult() {
+      const v = id => document.getElementById(id).value.trim(), msg = document.getElementById('cMsg');
+      if (!v('cName')) { msg.textContent = 'Please add your name.'; return; }
+      msg.textContent = '';
+      const t = `Hi Ceylon Biz World! I'd like a free consultation.\nName: ${v('cName')}\nBusiness: ${v('cBiz') || '-'}\nService: ${v('cSvc')}\nPreferred date: ${v('cDate') || 'flexible'}\nMeeting: ${v('cMode')}`;
+      window.open(wa(t), '_blank');
+    }
+
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('show'); io.unobserve(e.target); }
+    }), { threshold: .1 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
